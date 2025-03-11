@@ -21,7 +21,7 @@ const scene = new THREE.Scene()
 
 // Floor 
 const floor = new THREE.Mesh(
-    new THREE.PlaneGeometry(20, 20),
+    new THREE.PlaneGeometry(30, 30),
     new THREE.MeshStandardMaterial()
 )
 floor.rotation.x= - Math.PI * 0.5
@@ -32,24 +32,67 @@ scene.add(castle)
 
 // Walls
 const walls = new THREE.Mesh(
-    new THREE.BoxGeometry(4, 2.5, 4),
-    new THREE.MeshStandardMaterial()
+    new THREE.BoxGeometry(5, 2.5, 5),
+    new THREE.MeshStandardMaterial({color: "gray"})
 )
 walls.position.y += 1.25
 castle.add(walls)
 
 //Towers 
-const tower = new THREE.Mesh(
-    new THREE.CylinderGeometry(1, 1, 6, 32),
-    new THREE.MeshStandardMaterial()
+const towerGeometry = new THREE.CylinderGeometry(0.8, 0.8, 3.4, 32);
+const towerMaterial = new THREE.MeshStandardMaterial({color: "gray"});
+
+// Tower Top Right
+const towerTR = new THREE.Mesh(
+    towerGeometry,
+    towerMaterial
 );
-castle.add(tower)
+towerTR.position.x += 2.5;
+towerTR.position.y += 1.7; 
+towerTR.position.z -= 2.5;
+castle.add(towerTR)
+
+const towerTL = new THREE.Mesh(
+    towerGeometry,
+    towerMaterial
+);
+towerTL.position.x -= 2.5;
+towerTL.position.y += 1.7; 
+towerTL.position.z -= 2.5;
+castle.add(towerTL)
+
+const towerBR = new THREE.Mesh(
+    towerGeometry,
+    towerMaterial
+);
+towerBR.position.x += 2.5;
+towerBR.position.y += 1.7; 
+towerBR.position.z += 2.5;
+castle.add(towerBR)
+
+const towerBL = new THREE.Mesh(
+    towerGeometry,
+    towerMaterial
+);
+towerBL.position.x -= 2.5;
+towerBL.position.y += 1.7; 
+towerBL.position.z += 2.5;
+castle.add(towerBL)
+
+// Castle Door 
+const castleDoor = new THREE.Mesh(
+    new THREE.PlaneGeometry(2, 1.5),
+    new THREE.MeshStandardMaterial({color: "brown"})
+);
+castleDoor.position.y += 0.7;
+castleDoor.position.z += 2.51;
+castle.add(castleDoor)
 
 /**
  * Lights
  */
 // Ambient light
-const ambientLight = new THREE.AmbientLight('#ffffff', 0.5)
+const ambientLight = new THREE.AmbientLight('#ffffff', 0.7)
 scene.add(ambientLight)
 
 // Directional light
@@ -86,8 +129,8 @@ window.addEventListener('resize', () =>
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
 camera.position.x = 4
-camera.position.y = 2
-camera.position.z = 5
+camera.position.y = 5
+camera.position.z = 10
 scene.add(camera)
 
 // Controls
