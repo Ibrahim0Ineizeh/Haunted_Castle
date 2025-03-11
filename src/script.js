@@ -27,8 +27,8 @@ const floor = new THREE.Mesh(
 floor.rotation.x= - Math.PI * 0.5
 scene.add(floor)
 
-const house = new THREE.Group()
-scene.add(house)
+const castle = new THREE.Group()
+scene.add(castle)
 
 // Walls
 const walls = new THREE.Mesh(
@@ -36,7 +36,14 @@ const walls = new THREE.Mesh(
     new THREE.MeshStandardMaterial()
 )
 walls.position.y += 1.25
-house.add(walls)
+castle.add(walls)
+
+//Towers 
+const tower = new THREE.Mesh(
+    new THREE.CylinderGeometry(1, 1, 6, 32),
+    new THREE.MeshStandardMaterial()
+);
+castle.add(tower)
 
 /**
  * Lights
