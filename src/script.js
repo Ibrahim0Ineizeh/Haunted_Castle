@@ -21,7 +21,7 @@ const scene = new THREE.Scene()
 
 // Floor 
 const floor = new THREE.Mesh(
-    new THREE.PlaneGeometry(30, 30),
+    new THREE.PlaneGeometry(40, 40),
     new THREE.MeshStandardMaterial()
 )
 floor.rotation.x= - Math.PI * 0.5
@@ -32,14 +32,14 @@ scene.add(castle)
 
 // Walls
 const walls = new THREE.Mesh(
-    new THREE.BoxGeometry(5, 2.5, 5),
+    new THREE.BoxGeometry(7, 3.5, 7),
     new THREE.MeshStandardMaterial({color: "gray"})
 )
-walls.position.y += 1.25
+walls.position.y += 1.75
 castle.add(walls)
 
 //Towers 
-const towerGeometry = new THREE.CylinderGeometry(0.8, 0.8, 3.4, 32);
+const towerGeometry = new THREE.CylinderGeometry(1, 1, 5, 32);
 const towerMaterial = new THREE.MeshStandardMaterial({color: "gray"});
 
 // Tower Top Right
@@ -47,76 +47,75 @@ const towerTR = new THREE.Mesh(
     towerGeometry,
     towerMaterial
 );
-towerTR.position.x += 2.5;
-towerTR.position.y += 1.7; 
-towerTR.position.z -= 2.5;
+towerTR.position.x += 3.3;
+towerTR.position.y += 2.25; 
+towerTR.position.z -= 3.3;
 castle.add(towerTR)
 
 const towerTL = new THREE.Mesh(
     towerGeometry,
     towerMaterial
 );
-towerTL.position.x -= 2.5;
-towerTL.position.y += 1.7; 
-towerTL.position.z -= 2.5;
+towerTL.position.x -= 3.3;
+towerTL.position.y += 2.25; 
+towerTL.position.z -= 3.3;
 castle.add(towerTL)
 
 const towerBR = new THREE.Mesh(
     towerGeometry,
     towerMaterial
 );
-towerBR.position.x += 2.5;
-towerBR.position.y += 1.7; 
-towerBR.position.z += 2.5;
+towerBR.position.x += 3.3;
+towerBR.position.y += 2.25; 
+towerBR.position.z += 3.3;
 castle.add(towerBR)
 
 const towerBL = new THREE.Mesh(
     towerGeometry,
     towerMaterial
 );
-towerBL.position.x -= 2.5;
-towerBL.position.y += 1.7; 
-towerBL.position.z += 2.5;
+towerBL.position.x -= 3.3;
+towerBL.position.y += 2.25; 
+towerBL.position.z += 3.3;
 castle.add(towerBL)
 
 // Castle Door 
 const castleDoor = new THREE.Mesh(
-    new THREE.PlaneGeometry(2, 1.5),
+    new THREE.PlaneGeometry(2.5, 2),
     new THREE.MeshStandardMaterial({color: "brown"})
 );
 castleDoor.position.y += 0.7;
-castleDoor.position.z += 2.51;
+castleDoor.position.z += 3.51;
 castle.add(castleDoor)
-//
+
 // Trees
-//
 const treeBaseGeo = new THREE.CylinderGeometry(0.08, 0.15, 2, 8)
 const treeBranchOneGeo = new THREE.CylinderGeometry(0.03, 0.05, 1, 8)
 const treeBranchTwoGeo =  new THREE.CylinderGeometry(0.02, 0.05, 2, 8)
 const treeBushGeo = new THREE.SphereGeometry(1.1, 16, 8)
 const treeBranchMaterial = new THREE.MeshStandardMaterial({color : "brown"})
 const treeBushMaterial = new THREE.MeshStandardMaterial({color : "green"})
-//
 
-//
 //The Trees Group 
 const trees = new THREE.Group()
 scene.add(trees)
+
 // Creating all Trees
 for (let i = 0; i < 40; i++){
     
     // Creating an angle for the tree 
     const angle = Math.random() * Math.PI * 2
-    const radius = 6 + Math.random() * 9
+    const radius = 7 + Math.random() * 12
     const positionX = Math.sin(angle) * radius
     const positionZ = Math.cos(angle) * radius
     
-    // Creating the tree Mesh
+    // Creating the tree Base
     const treeBase = new THREE.Mesh(
         treeBaseGeo,
         treeBranchMaterial
     ) 
-    //
+    
+    // Creating a tree branch
     const treeBranchOne = new THREE.Mesh(
         treeBranchOneGeo,
         treeBranchMaterial
@@ -124,7 +123,8 @@ for (let i = 0; i < 40; i++){
     treeBranchOne.position.y += 0.9
     treeBranchOne.position.x -= 0.3
     treeBranchOne.rotation.z += Math.PI * 0.2
-    //
+    
+    // Creating a tree branch
     const treeBranchTwo = new THREE.Mesh(
        treeBranchTwoGeo,
        treeBranchMaterial
@@ -133,16 +133,19 @@ for (let i = 0; i < 40; i++){
     treeBranchTwo.position.z += 0.5
     treeBranchTwo.rotation.z += Math.PI * 0.15
     treeBranchTwo.rotation.y += Math.PI * 0.5
-    //
+    
+    // Create a tree bush
     const treeBush = new THREE.Mesh(
         treeBushGeo,
         treeBushMaterial
     )
     treeBush.position.y += 2
-    //
+    
+    // Make a group for the tree components and add them to the Group
     const tree = new THREE.Group()
     tree.add(treeBase, treeBranchOne, treeBranchTwo, treeBush)
-    //
+    
+    // Randomize trees
     tree.position.x = positionX
     tree.position.y += 0.6
     tree.position.y += Math.random() * 0.3
@@ -193,9 +196,9 @@ window.addEventListener('resize', () =>
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-camera.position.x = 4
-camera.position.y = 5
-camera.position.z = 10
+camera.position.x = 15
+camera.position.y = 15
+camera.position.z = 25
 scene.add(camera)
 
 // Controls
