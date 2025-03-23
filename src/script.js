@@ -87,6 +87,71 @@ const castleDoor = new THREE.Mesh(
 castleDoor.position.y += 0.7;
 castleDoor.position.z += 2.51;
 castle.add(castleDoor)
+//
+// Trees
+//
+const treeBaseGeo = new THREE.CylinderGeometry(0.08, 0.15, 2, 8)
+const treeBranchOneGeo = new THREE.CylinderGeometry(0.03, 0.05, 1, 8)
+const treeBranchTwoGeo =  new THREE.CylinderGeometry(0.02, 0.05, 2, 8)
+const treeBushGeo = new THREE.SphereGeometry(1.1, 16, 8)
+const treeBranchMaterial = new THREE.MeshStandardMaterial({color : "brown"})
+const treeBushMaterial = new THREE.MeshStandardMaterial({color : "green"})
+//
+
+//
+//The Trees Group 
+const trees = new THREE.Group()
+scene.add(trees)
+// Creating all Trees
+for (let i = 0; i < 40; i++){
+    
+    // Creating an angle for the tree 
+    const angle = Math.random() * Math.PI * 2
+    const radius = 6 + Math.random() * 9
+    const positionX = Math.sin(angle) * radius
+    const positionZ = Math.cos(angle) * radius
+    
+    // Creating the tree Mesh
+    const treeBase = new THREE.Mesh(
+        treeBaseGeo,
+        treeBranchMaterial
+    ) 
+    //
+    const treeBranchOne = new THREE.Mesh(
+        treeBranchOneGeo,
+        treeBranchMaterial
+    )
+    treeBranchOne.position.y += 0.9
+    treeBranchOne.position.x -= 0.3
+    treeBranchOne.rotation.z += Math.PI * 0.2
+    //
+    const treeBranchTwo = new THREE.Mesh(
+       treeBranchTwoGeo,
+       treeBranchMaterial
+    )
+    treeBranchTwo.position.y += 1
+    treeBranchTwo.position.z += 0.5
+    treeBranchTwo.rotation.z += Math.PI * 0.15
+    treeBranchTwo.rotation.y += Math.PI * 0.5
+    //
+    const treeBush = new THREE.Mesh(
+        treeBushGeo,
+        treeBushMaterial
+    )
+    treeBush.position.y += 2
+    //
+    const tree = new THREE.Group()
+    tree.add(treeBase, treeBranchOne, treeBranchTwo, treeBush)
+    //
+    tree.position.x = positionX
+    tree.position.y += 0.6
+    tree.position.y += Math.random() * 0.3
+    tree.position.z = positionZ
+    tree.rotation.x = (Math.random() - 0.3) * 0.4 
+    tree.rotation.z = (Math.random() - 0.3) * 0.3
+    trees.add(tree)
+}
+
 
 /**
  * Lights
