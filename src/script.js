@@ -2,12 +2,7 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { Timer } from 'three/addons/misc/Timer.js'
 import GUI from 'lil-gui'
-
-/**
- * Base
- */
-// Debug
-const gui = new GUI()
+import { Sky } from 'three/addons/objects/Sky.js'
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -304,17 +299,20 @@ for (let i = 0; i < 80; i++){
  * Lights
  */
 // Ambient light
-const ambientLight = new THREE.AmbientLight('#ffffff', 0.8)
+const ambientLight = new THREE.AmbientLight('#ffffff', 0.5)
 scene.add(ambientLight)
 
 // Directional light
-const directionalLight = new THREE.DirectionalLight('#ffffff', 1.2)
-directionalLight.position.set(3, 2, -8)
+const directionalLight = new THREE.DirectionalLight('#ffffff', 1)
+directionalLight.position.set(10, 8, -15)
 scene.add(directionalLight)
 
-const directionalLight2 = new THREE.DirectionalLight('#ffffff', 0.3)
-directionalLight2.position.set(-5, 2, +8)
-scene.add(directionalLight2)
+// const direHelper = new THREE.DirectionalLightHelper(directionalLight, 10)
+// scene.add(direHelper)
+
+// const directionalLight2 = new THREE.DirectionalLight('#ffffff', 0.3)
+// directionalLight2.position.set(-5, 2, +8)
+// scene.add(directionalLight2)
 
 /**
  * Sizes
@@ -361,6 +359,63 @@ const renderer = new THREE.WebGLRenderer({
 })
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+
+/**
+ * Shadows
+ */
+renderer.shadowMap.enabled = true
+renderer.shadowMap.type = THREE.PCFShadowMap
+
+directionalLight.castShadow = true
+directionalLight.shadow.mapSize.width = 512;
+directionalLight.shadow.mapSize.height = 512;
+directionalLight.shadow.camera.near = 0.5;
+directionalLight.shadow.camera.far = 50;
+directionalLight.shadow.camera.top = 32
+directionalLight.shadow.camera.right = 32
+directionalLight.shadow.camera.bottom = -32
+directionalLight.shadow.camera.left = -32
+
+walls.castShadow = true
+towerTR.castShadow = true
+towerTL.castShadow = true
+towerBR.castShadow = true
+towerBL.castShadow = true
+trees.castShadow = true
+
+walls.receiveShadow = true
+towerTR.receiveShadow = true
+towerTL.receiveShadow = true
+towerBR.receiveShadow = true
+towerBL.receiveShadow = true
+trees.receiveShadow = true
+
+for(const tree of trees.children){
+    for(const part of tree.children){
+        part.castShadow = true
+        part.receiveShadow = true
+    }
+}
+
+floor.receiveShadow = true
+
+/**
+ * Sky
+ */
+const sky = new Sky()
+sky.scale.set(200, 200, 200)
+sky.material.uniforms['turbidity'].value = 3
+sky.material.uniforms['rayleigh'].value = 0
+sky.material.uniforms['mieCoefficient'].value = 0.22
+sky.material.uniforms['mieDirectionalG'].value = 0.95
+sky.material.uniforms['sunPosition'].value.set(50, 100, -50)
+scene.add(sky)
+
+/**
+ * Sky
+ */
+scene.fog = new THREE.FogExp2("#ffffff", 0.014)
 
 /**
  * Animate
