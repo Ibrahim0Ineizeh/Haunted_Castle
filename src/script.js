@@ -17,10 +17,10 @@ const textureLoader = new THREE.TextureLoader()
 
 // Floor 
 const floorAlphaTexture = textureLoader.load("./floor/alpha.jpg")
-const floorColorTexture = textureLoader.load("./floorTwo/brown_mud_diff.jpg")
-const floorARMTexture = textureLoader.load("./floorTwo/brown_mud_arm.jpg")
-const floorDispTexture = textureLoader.load("./floorTwo/brown_mud_disp.jpg")
-const floorNormalTexture = textureLoader.load("./floorTwo/brown_mud_nor_gl.jpg")
+const floorColorTexture = textureLoader.load("./floorTwo/brown_mud_diff.webp")
+const floorARMTexture = textureLoader.load("./floorTwo/brown_mud_arm.webp")
+const floorDispTexture = textureLoader.load("./floorTwo/brown_mud_disp.webp")
+const floorNormalTexture = textureLoader.load("./floorTwo/brown_mud_nor_gl.webp")
 
 floorColorTexture.colorSpace = THREE.SRGBColorSpace
 
@@ -41,9 +41,9 @@ floorNormalTexture.wrapS = THREE.RepeatWrapping
 floorNormalTexture.wrapT = THREE.RepeatWrapping
 
 // Walls
-const wallColorTexture = textureLoader.load("./walls/seaworn_diff.jpg")
-const wallARMTexture = textureLoader.load("./walls/seaworn_arm.jpg")
-const wallNormalTexture = textureLoader.load("./walls/seaworn_nor_gl.jpg")
+const wallColorTexture = textureLoader.load("./walls/seaworn_diff.webp")
+const wallARMTexture = textureLoader.load("./walls/seaworn_arm.webp")
+const wallNormalTexture = textureLoader.load("./walls/seaworn_nor_gl.webp")
 
 wallColorTexture.colorSpace = THREE.SRGBColorSpace
 
@@ -60,9 +60,9 @@ wallNormalTexture.wrapS = THREE.RepeatWrapping
 wallNormalTexture.wrapT = THREE.RepeatWrapping
 
 // Wood
-const woodColorTexture = textureLoader.load("./wood/bark_diff.jpg")
-const woodARMTexture = textureLoader.load("./wood/brak_arm.jpg")
-const woodNormalTexture = textureLoader.load("./wood/bark_nor_gl.jpg")
+const woodColorTexture = textureLoader.load("./wood/bark_diff.webp")
+const woodARMTexture = textureLoader.load("./wood/brak_arm.webp")
+const woodNormalTexture = textureLoader.load("./wood/bark_nor_gl.webp")
 
 woodColorTexture.colorSpace = THREE.SRGBColorSpace
 
@@ -79,10 +79,9 @@ woodNormalTexture.wrapS = THREE.RepeatWrapping
 woodNormalTexture.wrapT = THREE.RepeatWrapping
 
 // Bush
-const bushColorTexture = textureLoader.load("./bush/bush_diff.jpg")
-const bushRoughTexture = textureLoader.load("./bush/bush_rough.jpg")
-const bushNormalTexture = textureLoader.load("./bush/bush_nor.jpg")
-const bushDispTexture = textureLoader.load("./bush/bush_disp.jpg")
+const bushColorTexture = textureLoader.load("./bush/bush_diff.webp")
+const bushRoughTexture = textureLoader.load("./bush/bush_rough.webp")
+const bushNormalTexture = textureLoader.load("./bush/bush_nor.webp")
 
 bushColorTexture.colorSpace = THREE.SRGBColorSpace
 
@@ -98,16 +97,12 @@ bushNormalTexture.repeat.set(1, 1)
 bushNormalTexture.wrapS = THREE.RepeatWrapping
 bushNormalTexture.wrapT = THREE.RepeatWrapping
 
-bushDispTexture.repeat.set(1, 1)
-bushDispTexture.wrapS = THREE.RepeatWrapping
-bushDispTexture.wrapT = THREE.RepeatWrapping
-
 // Door 
-const doorColorTexture = textureLoader.load("./door/woodenDoor_diff.jpg")
-const doorARMTexture = textureLoader.load("./door/woodenDoor_arm.jpg")
-const doorNormalTexture = textureLoader.load("./door/woodenDoor_normal_gl.jpg")
-const doorDispTexture = textureLoader.load("./door/woodenDoor_disp.jpg")
-const doorAOTexture = textureLoader.load("./door/woodenDoor_ad.jpg")
+const doorColorTexture = textureLoader.load("./door/woodenDoor_diff.webp")
+const doorARMTexture = textureLoader.load("./door/woodenDoor_arm.webp")
+const doorNormalTexture = textureLoader.load("./door/woodenDoor_normal_gl.webp")
+const doorDispTexture = textureLoader.load("./door/woodenDoor_disp.webp")
+const doorAOTexture = textureLoader.load("./door/woodenDoor_ad.webp")
 
 doorColorTexture.colorSpace = THREE.SRGBColorSpace
 /**
@@ -230,8 +225,6 @@ const treeBushMaterial = new THREE.MeshStandardMaterial({
     map: bushColorTexture,
     normalMap: bushNormalTexture,
     roughnessMap: bushRoughTexture,
-    displacementMap: bushDispTexture,
-    displacementScale: 0.8
 })
 
 //The Trees Group 
@@ -415,7 +408,7 @@ scene.add(sky)
 /**
  * Sky
  */
-scene.fog = new THREE.FogExp2("#ffffff", 0.014)
+scene.fog = new THREE.FogExp2("#ffffff", 0.0175)
 
 /**
  * Animate
