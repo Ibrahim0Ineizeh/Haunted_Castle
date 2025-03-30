@@ -112,9 +112,9 @@ const doorColorTexture = textureLoader.load("./door/woodenDoor_diff.jpg")
 const doorARMTexture = textureLoader.load("./door/woodenDoor_arm.jpg")
 const doorNormalTexture = textureLoader.load("./door/woodenDoor_normal_gl.jpg")
 const doorDispTexture = textureLoader.load("./door/woodenDoor_disp.jpg")
+const doorAOTexture = textureLoader.load("./door/woodenDoor_ad.jpg")
 
 doorColorTexture.colorSpace = THREE.SRGBColorSpace
-
 /**
  * House
  */
@@ -202,8 +202,9 @@ castle.add(towerBL)
 
 // Castle Door 
 const castleDoor = new THREE.Mesh(
-    new THREE.PlaneGeometry(2.5, 2),
+    new THREE.PlaneGeometry(2.5, 2, 25, 25),
     new THREE.MeshStandardMaterial({
+        aoMap: doorAOTexture,
         map: doorColorTexture,
         aoMap: doorARMTexture,
         roughnessMap: doorARMTexture,
@@ -211,10 +212,10 @@ const castleDoor = new THREE.Mesh(
         displacementMap: doorDispTexture,
         normalMap: doorNormalTexture,
         displacementScale: 0.3,
-        displacementBias: -0.13
+        displacementBias: -0.1
     })
 );
-castleDoor.position.y += 0.7;
+castleDoor.position.y += 0.9;
 castleDoor.position.z += 3.51;
 castle.add(castleDoor)
 
