@@ -63,7 +63,7 @@ wallNormalTexture.wrapT = THREE.RepeatWrapping
 
 // Wood
 const woodColorTexture = textureLoader.load("./wood/bark_diff.webp")
-const woodARMTexture = textureLoader.load("./wood/brak_arm.webp")
+const woodARMTexture = textureLoader.load("./wood/bark_arm.webp")
 const woodNormalTexture = textureLoader.load("./wood/bark_nor_gl.webp")
 
 woodColorTexture.colorSpace = THREE.SRGBColorSpace
