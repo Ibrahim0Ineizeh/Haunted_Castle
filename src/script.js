@@ -17,7 +17,7 @@ const scene = new THREE.Scene()
  */
 const textureLoader = new THREE.TextureLoader()
 
-// Floor 
+// Floor
 const floorAlphaTexture = textureLoader.load("./floor/alpha.jpg")
 const floorColorTexture = textureLoader.load("./floorTwo/brown_mud_diff.webp")
 const floorARMTexture = textureLoader.load("./floorTwo/brown_mud_arm.webp")
@@ -99,7 +99,7 @@ bushNormalTexture.repeat.set(1, 1)
 bushNormalTexture.wrapS = THREE.RepeatWrapping
 bushNormalTexture.wrapT = THREE.RepeatWrapping
 
-// Door 
+// Door
 const doorColorTexture = textureLoader.load("./door/woodenDoor_diff.webp")
 const doorARMTexture = textureLoader.load("./door/woodenDoor_arm.webp")
 const doorNormalTexture = textureLoader.load("./door/woodenDoor_normal_gl.webp")
@@ -111,7 +111,7 @@ doorColorTexture.colorSpace = THREE.SRGBColorSpace
  * House
  */
 
-// Floor 
+// Floor
 const floor = new THREE.Mesh(
     new THREE.PlaneGeometry(40, 40, 200, 200),
     new THREE.MeshStandardMaterial({
@@ -152,7 +152,7 @@ const walls = new THREE.Mesh(
 walls.position.y += 1.75
 castle.add(walls)
 
-//Towers 
+//Towers
 const towerGeometry = new THREE.CylinderGeometry(1, 1, 5, 32);
 
 // Tower Top Right
@@ -161,7 +161,7 @@ const towerTR = new THREE.Mesh(
     wallMaterial
 );
 towerTR.position.x += 3.3;
-towerTR.position.y += 2.25; 
+towerTR.position.y += 2.25;
 towerTR.position.z -= 3.3;
 castle.add(towerTR)
 
@@ -170,7 +170,7 @@ const towerTL = new THREE.Mesh(
     wallMaterial
 );
 towerTL.position.x -= 3.3;
-towerTL.position.y += 2.25; 
+towerTL.position.y += 2.25;
 towerTL.position.z -= 3.3;
 castle.add(towerTL)
 
@@ -179,7 +179,7 @@ const towerBR = new THREE.Mesh(
     wallMaterial
 );
 towerBR.position.x += 3.3;
-towerBR.position.y += 2.25; 
+towerBR.position.y += 2.25;
 towerBR.position.z += 3.3;
 castle.add(towerBR)
 
@@ -188,11 +188,11 @@ const towerBL = new THREE.Mesh(
     wallMaterial
 );
 towerBL.position.x -= 3.3;
-towerBL.position.y += 2.25; 
+towerBL.position.y += 2.25;
 towerBL.position.z += 3.3;
 castle.add(towerBL)
 
-// Castle Door 
+// Castle Door
 const castleDoor = new THREE.Mesh(
     new THREE.PlaneGeometry(2.5, 2, 25, 25),
     new THREE.MeshStandardMaterial({
@@ -229,25 +229,25 @@ const treeBushMaterial = new THREE.MeshStandardMaterial({
     roughnessMap: bushRoughTexture,
 })
 
-//The Trees Group 
+//The Trees Group
 const trees = new THREE.Group()
 scene.add(trees)
 
 // Creating all Trees
 for (let i = 0; i < 80; i++){
-    
-    // Creating an angle for the tree 
+
+    // Creating an angle for the tree
     const angle = Math.random() * Math.PI * 2
     const radius = 7 + Math.random() * 12
     const positionX = Math.sin(angle) * radius
     const positionZ = Math.cos(angle) * radius
-    
+
     // Creating the tree Base
     const treeBase = new THREE.Mesh(
         treeBaseGeo,
         treeBranchMaterial
-    ) 
-    
+    )
+
     // Creating a tree branch
     const treeBranchOne = new THREE.Mesh(
         treeBranchOneGeo,
@@ -256,7 +256,7 @@ for (let i = 0; i < 80; i++){
     treeBranchOne.position.y += 0.35
     treeBranchOne.position.x -= 0.1
     treeBranchOne.rotation.z += Math.PI * 0.2
-    
+
     // Creating a tree branch
     const treeBranchTwo = new THREE.Mesh(
        treeBranchTwoGeo,
@@ -266,18 +266,18 @@ for (let i = 0; i < 80; i++){
     treeBranchTwo.position.z += 0.2
     treeBranchTwo.rotation.z += Math.PI * 0.15
     treeBranchTwo.rotation.y += Math.PI * 0.5
-    
+
     // Create a tree bush
     const treeBush = new THREE.Mesh(
         treeBushGeo,
         treeBushMaterial
     )
     treeBush.position.y += 1.3
-    
+
     // Make a group for the tree components and add them to the Group
     const tree = new THREE.Group()
     tree.add(treeBase, treeBranchOne, treeBranchTwo, treeBush)
-    
+
     // Randomize trees
     tree.position.x = positionX
     tree.position.y += 0.315
